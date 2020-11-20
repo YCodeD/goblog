@@ -6,6 +6,7 @@ import (
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request)  {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if r.URL.Path == "/" {
 		fmt.Fprint(w, "<h1>Hello, 这里是goblog!!</h1>")
 	} else if r.URL.Path == "/about" {
@@ -21,9 +22,6 @@ func handlerFunc(w http.ResponseWriter, r *http.Request)  {
 
 func main()  {
 	http.HandleFunc("/", handlerFunc)
-	err := http.ListenAndServe(":3001", nil)
-	if err != nil {
-		fmt.Println(err)
-	}
+	http.ListenAndServe(":3001", nil)
 
 }
