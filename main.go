@@ -427,17 +427,19 @@ func removeTrailingSlash(next http.Handler) http.Handler {
 }
 
 func main() {
+
 	database.Initialize()
-	db = database.DB
+    db = database.DB
 
-	router = bootstrap.SetupRoute()
+    bootstrap.SetupDB()
+    router = bootstrap.SetupRoute()
 
-	router.HandleFunc("/articles", articlesIndexHandler).Methods("GET").Name("articles.index")
-	router.HandleFunc("/articles", articlesStoreHandler).Methods("POST").Name("articles.store")
-	router.HandleFunc("/articles/create", articlesCreateHandler).Methods("GET").Name("articles.create")
-	router.HandleFunc("/articles/{id:[0-9]+}/edit", articlesEditHandler).Methods("GET").Name("articles.edit")
-	router.HandleFunc("/articles/{id:[0-9]+}", articlesUpdateHandler).Methods("POST").Name("articles.update")
-	router.HandleFunc("/articles/{id:[0-9]+}/delete", articlesDeleteHandler).Methods("POST").Name("articles.delete")
+	// router.HandleFunc("/articles", articlesIndexHandler).Methods("GET").Name("articles.index")
+	// router.HandleFunc("/articles", articlesStoreHandler).Methods("POST").Name("articles.store")
+	// router.HandleFunc("/articles/create", articlesCreateHandler).Methods("GET").Name("articles.create")
+	// router.HandleFunc("/articles/{id:[0-9]+}/edit", articlesEditHandler).Methods("GET").Name("articles.edit")
+	// router.HandleFunc("/articles/{id:[0-9]+}", articlesUpdateHandler).Methods("POST").Name("articles.update")
+	// router.HandleFunc("/articles/{id:[0-9]+}/delete", articlesDeleteHandler).Methods("POST").Name("articles.delete")
 
 	// 中间件：强制内容类型为 HTML
 	router.Use(forceHTMLMiddleware)
