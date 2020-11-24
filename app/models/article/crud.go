@@ -8,13 +8,13 @@ import (
 
 // Get 通过 ID 获取文章
 func Get(idstr string) (Article, error) {
-    var article Article
-    id := types.StringToInt(idstr)
-    if err := model.DB.First(&article, id).Error; err != nil {
-        return article, err
-    }
+	var article Article
+	id := types.StringToInt(idstr)
+	if err := model.DB.First(&article, id).Error; err != nil {
+		return article, err
+	}
 
-    return article, nil
+	return article, nil
 }
 
 // GetAll 获取全部文章
@@ -27,17 +27,17 @@ func GetAll() ([]Article, error) {
 }
 
 // Create 创建文章，通过 article.ID 来判断是否创建成功
-func (article *Article) Create() (err error)  {
+func (article *Article) Create() (err error) {
 	result := model.DB.Create(&article)
 	if err = result.Error; err != nil {
 		logger.LogError(err)
 		return err
 	}
 
-	return nil 
+	return nil
 }
 
-// Update
+// Update 更新文章
 func (article *Article) Update() (rowsAffected int64, err error) {
 	result := model.DB.Save(&article)
 	if err := result.Error; err != nil {
@@ -45,5 +45,16 @@ func (article *Article) Update() (rowsAffected int64, err error) {
 		return 0, err
 	}
 
-	return result.RowsAffected, nil 
+	return result.RowsAffected, nil
+}
+
+// Delete 删除文章
+func (article *Article) Delete() (rowsAffected int64, err error) {
+	result := model.DB.Delete(&article)
+	if err := result.Error; err != nil {
+		logger.LogError(err)
+		return 0, err
+	}
+
+	return result.RowsAffected, nil
 }
