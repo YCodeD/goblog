@@ -8,8 +8,8 @@ import (
 )
 
 // RegisterWebRoutes 注册网页相关路由
-func RegisterWebRoutes(r *mux.Router)  {
-	
+func RegisterWebRoutes(r *mux.Router) {
+
 	// 静态页面
 	pc := new(controllers.PagesController)
 	r.HandleFunc("/", pc.Home).Methods("GET").Name("home")
@@ -17,4 +17,8 @@ func RegisterWebRoutes(r *mux.Router)  {
 
 	// 自定义 404 页面
 	r.NotFoundHandler = http.HandlerFunc(pc.NotFound)
+
+	// 文章相关页面
+	ac := new(controllers.ArticlesController)
+	r.HandleFunc("/articles/{id:[0-9]+}", ac.Show).Methods("GET").Name("articles.show")
 }
