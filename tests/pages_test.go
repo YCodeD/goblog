@@ -54,13 +54,13 @@ func TestAllPages(t *testing.T)  {
 		{"GET", "/", 200},
 		{"GET", "/about", 200},
 		{"GET", "/notfound", 404},
-		{"GET", "/articles", 200},
-		{"GET", "/articles/create", 200},
+		// {"GET", "/articles", 200},
+		// {"GET", "/articles/create", 200},
 		{"GET", "/articles/3", 200},
-		{"GET", "/articles/3/edit", 200},
-		{"POST", "/articles/3", 200},
-		{"POST", "/articles", 200},
-		{"POST", "/articles/1/delete", 404},
+		// {"GET", "/articles/3/edit", 200},
+		// {"POST", "/articles/3", 200},
+		// {"POST", "/articles", 200},
+		// {"POST", "/articles/1/delete", 404},
 	}
 
 	// 2. 遍历所有测试
