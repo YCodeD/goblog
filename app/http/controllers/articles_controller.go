@@ -69,6 +69,9 @@ func (*ArticlesController) Show(w http.ResponseWriter, r *http.Request) {
 
 // Index 文章列表页
 func (*ArticlesController) Index(w http.ResponseWriter, r *http.Request) {
+
+	// fmt.Fprint(w, config.Get("app.name"))
+
 	// 1. 执行查询语句，返回一个结果集
 	articles, err := article.GetAll()
 
@@ -150,7 +153,7 @@ func (*ArticlesController) Store(w http.ResponseWriter, r *http.Request) {
 
 		if _article.ID > 0 {
 			indexURL := route.Name2URL("articles.show", "id", _article.GetStringID())
-            http.Redirect(w, r, indexURL, http.StatusFound)
+			http.Redirect(w, r, indexURL, http.StatusFound)
 		} else {
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprint(w, "文章创建失败，请联系管理员")
@@ -159,7 +162,7 @@ func (*ArticlesController) Store(w http.ResponseWriter, r *http.Request) {
 
 		view.Render(w, view.D{
 			"Article": _article,
-			"Errors": errors,
+			"Errors":  errors,
 		}, "articles.create", "articles._form_field")
 
 		// 对 errors 的传参到html中进行渲染，使用到标准库html/template
