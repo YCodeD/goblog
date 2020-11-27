@@ -19,7 +19,7 @@ type UserController struct {
 func (uc *UserController) Show(w http.ResponseWriter, r *http.Request) {
 
 	// 1. 获取 URL 参数
-	id := route.GetRouterVariable("id", r)
+	id := route.GetRouteVariable("id", r)
 
 	// 2. 读取对应的文章数据
 	_user, err := user.Get(id)

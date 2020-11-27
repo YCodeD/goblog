@@ -19,7 +19,7 @@ type ArticlesController struct {
 // Show 文章详情页面
 func (ac *ArticlesController) Show(w http.ResponseWriter, r *http.Request) {
 	// 1. 获取 URL 参数
-	id := route.GetRouterVariable("id", r)
+	id := route.GetRouteVariable("id", r)
 
 	// 2. 读取对应的文章数据
 	article, err := article.Get(id)
@@ -104,7 +104,7 @@ func (*ArticlesController) Store(w http.ResponseWriter, r *http.Request) {
 // Edit 文章更新页面
 func (ac *ArticlesController) Edit(w http.ResponseWriter, r *http.Request) {
 	// 1. 获取 URL 参数
-	id := route.GetRouterVariable("id", r)
+	id := route.GetRouteVariable("id", r)
 
 	// 2. 读取对应的文章数据
 	_article, err := article.Get(id)
@@ -129,7 +129,7 @@ func (ac *ArticlesController) Edit(w http.ResponseWriter, r *http.Request) {
 // Update 更新文章
 func (ac *ArticlesController) Update(w http.ResponseWriter, r *http.Request) {
 	// 1. 获取 URL 参数
-	id := route.GetRouterVariable("id", r)
+	id := route.GetRouteVariable("id", r)
 
 	// 2. 读取对应的文章数据
 	_article, err := article.Get(id)
@@ -184,7 +184,7 @@ func (ac *ArticlesController) Update(w http.ResponseWriter, r *http.Request) {
 // Delete 删除文章
 func (ac *ArticlesController) Delete(w http.ResponseWriter, r *http.Request) {
 	// 1. 获取 URL 参数
-	id := route.GetRouterVariable("id", r)
+	id := route.GetRouteVariable("id", r)
 
 	// 2. 读取对应的文章数据
 	_article, err := article.Get(id)
