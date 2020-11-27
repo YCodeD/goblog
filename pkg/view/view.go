@@ -28,9 +28,9 @@ func RenderSimple(w io.Writer, data D, tplFiles ...string) {
 func RenderTemplate(w io.Writer, name string, data D, tplFiles ...string) {
 
 	// 1. 通用模板数据
-	data["isLogined"] = auth.Check()
-	data["loginUser"] = auth.User()
-	data["flash"] = flash.All()
+    data["isLogined"] = auth.Check()
+    data["loginUser"] = auth.User
+    data["flash"] = flash.All()
 
 	// 2. 生成模板文件
 	allFiles := getTemplateFiles(tplFiles...)

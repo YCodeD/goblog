@@ -40,14 +40,14 @@ func (*AuthController) DoRegister(w http.ResponseWriter, r *http.Request) {
 			"User":   _user,
 		}, "auth.register")
 	} else {
-		// 4. 验证通过,创建数据
-		_user.Create()
+		 // 4. 验证成功，创建数据
+		 _user.Create()
 
-		if _user.ID > 0 {
-			// 登录用户并跳转到首页
-			flash.Success("恭喜您注册成功！")
-			auth.Login(_user)
-			http.Redirect(w, r, "/", http.StatusFound)
+		 if _user.ID > 0 {
+			 // 登录用户并跳转到首页
+			 flash.Success("恭喜您注册成功！")
+			 auth.Login(_user)
+			 http.Redirect(w, r, "/", http.StatusFound)
 		} else {
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprint(w, "注册失败,请联系管理员")
@@ -69,10 +69,10 @@ func (*AuthController) DoLogin(w http.ResponseWriter, r *http.Request) {
 	password := r.PostFormValue("password")
 
 	// 2. 尝试登录
-	if err := auth.Attempt(email, password); err == nil {
-		// 登录成功
-		flash.Success("欢迎回来！")
-		http.Redirect(w, r, "/", http.StatusFound)
+    if err := auth.Attempt(email, password); err == nil {
+        // 登录成功
+        flash.Success("欢迎回来！")
+        http.Redirect(w, r, "/", http.StatusFound)
 	} else {
 		// 3. 失败，显示错误信息提示
 		view.RenderSimple(w, view.D{
