@@ -29,6 +29,8 @@ func RegisterWebRoutes(r *mux.Router) {
 
 	// 用户认证
 	auc := new(controllers.AuthController)
+	uc := new(controllers.UserController)
+	r.HandleFunc("/users/{id:[0-9]+}", uc.Show).Methods("GET").Name("users.show")
 	r.HandleFunc("/auth/register", middlewares.Guest(auc.Register)).Methods("GET").Name("auth.register")
 	r.HandleFunc("/auth/do-register", middlewares.Guest(auc.DoRegister)).Methods("POST").Name("auth.doregister")
 	r.HandleFunc("/auth/login", middlewares.Guest(auc.Login)).Methods("GET").Name("auth.login")
