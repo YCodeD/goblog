@@ -45,7 +45,7 @@ func (ac *ArticlesController) Index(w http.ResponseWriter, r *http.Request) {
 	// fmt.Fprint(w, config.Get("app.name"))
 
 	// 1. 执行查询语句，返回一个结果集
-	articles, err := article.GetAll()
+	articles,pagerData, err := article.GetAll(r, 2)
 
 	if err != nil {
 		// 数据库错误
@@ -55,6 +55,7 @@ func (ac *ArticlesController) Index(w http.ResponseWriter, r *http.Request) {
 
 		view.Render(w, view.D{
 			"Articles": articles,
+			"PagerData": pagerData,
 		}, "articles.index", "articles._article_meta")
 	}
 
