@@ -15,7 +15,12 @@ type User struct {
 	PasswordComfirm string `gorm:"-" valid:"password_comfirm"`
 }
 
-// ComparePassword ????????
+// ComparePassword ????
 func (u User) ComparePassword(_password string) bool {
 	return password.CheckHash(_password, u.Password)
+}
+
+// Link ??????????
+func (u User) Link() string {
+	return ""
 }

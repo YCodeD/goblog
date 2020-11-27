@@ -43,27 +43,7 @@ func (*ArticlesController) Show(w http.ResponseWriter, r *http.Request) {
 
 		view.Render(w, view.D{
 			"Article": article,
-		}, "articles.show")
-
-		// // 4.0 设置模板相对路径
-		// viewDir := "resources/views"
-
-		// // 4.1 所有布局模板文件 Slice
-		// files, err := filepath.Glob(viewDir + "/layouts/*.gohtml")
-		// logger.LogError(err)
-
-		// // 4.2 在 Slice 里新增我们的目标文件
-		// newFiles := append(files, viewDir+"/articles/show.gohtml")
-
-		// // 4.3 解析模板文件
-		// tmpl, err := template.New("show.gohtml").
-		// 	Funcs(template.FuncMap{
-		// 		"RouteName2URL": route.Name2URL,
-		// 	}).ParseFiles(newFiles...)
-		// logger.LogError(err)
-
-		// // 4.4 渲染模板，将所有文章的数据传输进去
-		// tmpl.ExecuteTemplate(w, "app", article)
+		}, "articles.show", "articles._article_meta")
 	}
 }
 
@@ -85,54 +65,15 @@ func (*ArticlesController) Index(w http.ResponseWriter, r *http.Request) {
 
 		view.Render(w, view.D{
 			"Articles": articles,
-		}, "articles.index")
-
-		// // 2.0 设置模板相对路径
-		// viewDir := "resources/views"
-
-		// // 2.1 所有布局模板文件 Slice
-		// files, err := filepath.Glob(viewDir + "/layouts/*.gohtml")
-		// logger.LogError(err)
-
-		// // 2.2 在 Slice 里新增我们的目标文件
-		// newFiles := append(files, viewDir+"/articles/index.gohtml")
-
-		// // 2.3 解析模板文件
-		// tmpl, err := template.ParseFiles(newFiles...)
-		// logger.LogError(err)
-
-		// // 2.4 渲染模板，将所有文章的数据传输进去
-		// tmpl.ExecuteTemplate(w, "app", articles)
+		}, "articles.index", "articles._article_meta")
 	}
 
 }
-
-// ArticlesFormData 创建博文表单数据
-// type ArticlesFormData struct {
-// 	Title, Body string
-// 	Article     article.Article
-// 	Errors      map[string]string
-// }
 
 // Create 文章创建页面
 func (*ArticlesController) Create(w http.ResponseWriter, r *http.Request) {
 
 	view.Render(w, view.D{}, "articles.create", "articles._form_field")
-
-	// storeURL := route.Name2URL("articles.store")
-	// data := ArticlesFormData{
-	// 	Title:  "",
-	// 	Body:   "",
-	// 	URL:    storeURL,
-	// 	Errors: nil,
-	// }
-
-	// tmpl, err := template.ParseFiles("resources/views/articles/create.gohtml")
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	// tmpl.Execute(w, data)
 }
 
 // Store 文章创建页面
